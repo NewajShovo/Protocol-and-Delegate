@@ -7,6 +7,7 @@
 //
 
 #import "secondViewController.h"
+#import "ViewController.h"
 
 @interface secondViewController ()
 
@@ -22,7 +23,13 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [txtlastname resignFirstResponder];
-    [self.obj setlastname:txtlastname.text]; // method setlastname txtlastname is set
+    [self.obj setlastname:txtlastname.text];
+    [self.obj setbgcolor:[UIColor blueColor]];// method setlastname txtlastname is set
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //hides keyboard when another part of layout was touched
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
 }
 
 /*
@@ -36,11 +43,32 @@
 */
 
 - (IBAction)btndone:(id)sender {
+    [ self.obj function:1];
+    if ([self.obj respondsToSelector:@selector(itreateWidgets:)]) {
+        [self.obj itreateWidgets:^(BOOL finished) {
+            if(finished)
+            {
+                NSLog(@"success");
+            }        else{
+                NSLog(@"Failure");
+            }
+        }];
+        
+    }
+    if (self.test) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.test(YES);
+        });
+    }
     
     [txtlastname resignFirstResponder];
     [self.obj setlastname:txtlastname.text];
     [self.obj setbgcolor:[UIColor orangeColor]];
     [self.obj settxtcolor:[UIColor blackColor]];
     [self.navigationController popViewControllerAnimated:YES];
+    
+    
 }
+
+
 @end

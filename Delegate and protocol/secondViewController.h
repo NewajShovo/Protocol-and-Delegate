@@ -14,12 +14,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) setlastname: (NSString *) lastname;
 - (void) setbgcolor: (UIColor *) bgcolor;
 - (void) settxtcolor: (UIColor *) txtcolor;
+- (void) function: (BOOL) val;
+@optional
+- (void) itreateWidgets:(void (^)(BOOL block))blockName;
 
 @end
 
 @interface secondViewController : UIViewController
-@property (retain,nonatomic) id <ABC> obj; // protocol object
+@property (retain,nonatomic) id <ABC> obj;
 @property (strong, nonatomic) IBOutlet UITextField *txtlastname;
+@property (nonatomic,copy) void (^test) (BOOL);
 - (IBAction)btndone:(id)sender;
 
 @end

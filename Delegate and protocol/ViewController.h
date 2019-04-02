@@ -13,6 +13,12 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *txtfirstname;
 @property (strong, nonatomic) IBOutlet UITextField *txtfullname;
+typedef void (^ Completion) (BOOL);
 
 @end
+@interface ViewController ()
+{
+    
+}
 
+@end
